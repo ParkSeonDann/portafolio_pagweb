@@ -1,0 +1,31 @@
+{% extends 'padre/base.html' %}
+{% load static %}
+{% block titulo %}
+Entrar
+{% endblock titulo %}
+{% block contenido %}
+<br>
+<main class="form-signin w-100 m-auto d-flex" style="justify-content: center;">
+    <form  method="POST">
+        {% csrf_token %}
+      <h1 class="h3 mb-3 fw-normal text-bg-dark fa text-center">{{ titulo }}</h1>
+  
+      <div class="form-floating">
+        {{ formulario.usuario }}
+        <label for="{{ formulario.usuario.id_for_label }}">{{ formulario.usuario.label }}</label>
+      </div>
+      <br>
+      <div class="form-floating">
+        {{ formulario.contrasenia }}
+        <label for="{{ formulario.contrasenia.id_for_label }}">{{ formulario.contrasenia.label }}</label>
+      </div>
+  
+      <div class="form-check text-start my-3 text-bg-dark">
+        <label class="form-check-label" for="flexCheckDefault">
+            {{ formulario.recuerdame }} {{ formulario.recuerdame.label}}
+        </label>
+      </div>
+      <button class="btn btn-primary w-100 py-2" type="submit">Entrar</button>
+    </form>
+  </main>
+{% endblock %}

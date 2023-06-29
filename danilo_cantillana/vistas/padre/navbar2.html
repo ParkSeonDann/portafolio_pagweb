@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Responsive Fixed Sidebar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            outline: none;
+            border: none;
+            text-decoration: none;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            height: 100%;
+            left: 0;
+            background: #fff;
+            width: 90px;
+            overflow: hidden;
+            transition: width 0.2s linear;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        a {
+            position: relative;
+            color: rgb(85, 83, 83);
+            font-size: 14px;
+            display: table;
+            width: 300px;
+            padding: 10px;
+            text-decoration: none;
+        }
+
+        .fas {
+            position: relative;
+            width: 70px;
+            height: 40px;
+            top: 14px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .nav-item {
+            position: relative;
+            top: 12px;
+            margin-left: 10px;
+        }
+
+        a:hover {
+            background: #eee;
+        }
+
+        nav:hover {
+            width: 280px;
+            transition: all 0.5s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: flex;
+                flex-direction: row;
+                height: 60px;
+                top: calc(100vh - 60px);
+                position: fixed;
+                width: 100vw;
+            }
+
+            a {
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+
+            .fas {
+                display: none;
+            }
+
+            .nav-item {
+                display: none;
+            }
+
+            nav:hover {
+                width: 100%;
+            }
+            ul {
+                display: flex !important; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="" style="z-index: 100;">
+        <ul style="display: inline;">
+            <li><a href="{% url 'principal'  %}">
+                <i class="fas fa-home"></i>
+                <span class="nav-item">Inicio</span>
+             </a></li>
+              <li><a href="{% url 'ver_prod'  %}">
+               <i class="fas fa-shop"></i>
+                <span class="nav-item">Tienda</span>
+             </a></li>
+             {% if user.is_authenticated == True %}
+             <li><a href="{% url 'ver_carrito'  %}">
+               <i class="fas fa-cart-shopping"></i></i>
+               <span class="nav-item">Carrito</span>
+             </a></li>
+             <li><a href="{% url 'historial_ventas'  %}">
+               <i class="fas fa-clock-rotate-left"></i></i>
+               <span class="nav-item">Compras</span>
+             </a></li>
+             {% endif %}
+             {% if user.is_authenticated == False %}
+             <li><a href="{% url 'entrar'  %}">
+                <i class="fas fa-user"></i></i>
+                <span class="nav-item">Iniciar Sesion</span>
+             </a></li>
+             <li><a href="{% url 'registro'  %}">
+                <i class="fas fa-user-plus"></i></i>
+                <span class="nav-item">Registrarse</span>
+             </a></li>
+             {% endif %}
+             {% if user.is_authenticated %}
+             <li><a href="{% url 'cerrar_sesion'  %}">
+                <i class="fas fas fa-sign-out-alt"></i></i>
+                <span class="nav-item">Salir</span>
+             </a></li>
+             {% endif %}
+        </ul>
+    </nav>
+</body>
+</html>

@@ -1,0 +1,67 @@
+{% extends 'padre/base.html' %}
+{% load static %}
+{% block titulo %}
+Carrito
+{% endblock titulo %}
+{% block contenido %}
+<body class="text-bg-dark">
+    <h1 class="text-center">Carrito de Compras</h1>
+  
+    {% if items %}
+      <table class="container">
+        <thead>
+          <tr>
+            <th class="col-4">Producto</th>
+            <th class="col-3">Precio</th>
+            <th class="col-3">Cantidad</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in items %}
+            <tr>
+              <td>{{ item.producto.nombre }}</td>
+              <td>${{ item.producto.precio }}</td>
+              <td class="d-flex" style="align-items: center; flex-wrap: nowrap; place-content: space-evenly;">
+                <br><br>
+                <form method="POST" action="{% url 'aumentar_cantidad' item.id %}">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger"><i class="fa-solid fa-plus"></i></button>
+                </form>
+                <div>
+                {{ item.cantidad }}
+                </div>
+                <form method="POST" action="{% url 'disminuir_cantidad' item.id %}">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger"><i class="fa-solid fa-minus"></i></button>
+                </form>
+              </td>
+              <td>
+                <form method="POST" action="{% url 'eliminar_producto' item.id %}">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <h2 class="text-bg-dark text-center">Total: ${{ total_cant }}</h2>
+      <form method="POST" action="{% url 'limpiar_carrito' %}" class="text-center">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Limpiar Carrito</button>
+      </form>
+    {% else %}
+      <p style="display: flex; flex-wrap: wrap; justify-content: center;">No hay productos en el carrito.</p>
+    {% endif %}
+    <br>
+    {% if items %}
+    <div class="text-center">
+      <a href="{% url 'generar_comprobante' carrito.id  %}" class="btn btn-success">Generar Comprobante</a>
+    </div>
+    {% endif  %}
+    <br>
+    <section class="text-center">
+    <a href="{% url 'ver_prod' %}" class="btn btn-light text-center">Volver a la tienda</a>
+  </section>
+  </body>
+  {% endblock contenido %}

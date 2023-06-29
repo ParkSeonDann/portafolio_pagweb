@@ -1,0 +1,79 @@
+{% extends 'padre/base.html' %}
+{% block titulo %}
+ Registro
+{% endblock titulo %}
+
+
+{%  block css %}
+<style>
+    body {
+        background-color: rgb(33, 37, 41);
+    }
+</style>
+{%  endblock css %}
+{%  block contenido %}
+<body class="text-bg-dark">
+    <form method="POST" class="container">
+        {% csrf_token %}
+        <br>
+        <section class="row">
+            <h1 class="text-center fa">Bienvenido</h1>
+        </section>
+        <section class="row">
+            <fieldset class="col-6">
+                <label for="{{ formulario.username.id_for_label }}"> {{ formulario.username.label }}</label>
+                {{ formulario.username }}
+                <p class="invalid-feedback">
+                    {{formulario.username.errors }}
+                </p>
+            </fieldset>
+            <fieldset class="col-6">
+                <label for="{{ formulario.first_name.id_for_label }}"> {{ formulario.first_name.label }}</label>
+                {{ formulario.first_name }}
+                <p class="invalid-feedback">
+                    {{formulario.first_name.errors }}
+                </p>
+            </fieldset>
+        </section>
+        <section class="row">
+            
+        </section>
+        <section class="row">
+            <fieldset class="col-12">
+                <label for="{{ formulario.email.id_for_label }}"> {{ formulario.email.label }}</label>
+                {{ formulario.email }}
+                <p class="invalid-feedback">
+                    {{formulario.email.errors }}
+                </p>
+            </fieldset>
+        </section>
+        <section class="row">
+            <fieldset class="col-6">
+                <label for="{{ formulario.password1.id_for_label }}"> {{ formulario.password1.label }}</label>
+                {{ formulario.password1 }}
+                <p class="invalid-feedback">
+                    {{formulario.password1.errors }}
+                </p>
+            </fieldset>
+            <fieldset class="col-6">
+                <label for="{{ formulario.password2.id_for_label }}"> {{ formulario.password2.label }}</label>
+                {{ formulario.password2 }}
+                <p class="invalid-feedback">
+                    {{formulario.password2.errors }}
+                </p>
+            </fieldset>
+        </section>
+        <br>
+        <section class="row">
+            <fieldset class="offset-md-4 col-md-4 col-12">
+                <div class="d-grid">
+                    <button class="btn btn-success" role="submit" type="submit">
+                        Registrar 
+                    </button>
+                </div>
+            </fieldset>
+        </section>
+    </form>
+</body>
+
+{%  endblock contenido %}

@@ -1,0 +1,27 @@
+{% extends 'padre/base.html' %}
+{% load static %}
+{% block titulo %}
+Inicio
+{% endblock titulo %}
+{% block css %}
+<style>
+  .text-justify {
+    text-align: justify;
+}
+</style>
+{% endblock css %}
+{% block contenido %}
+<body class="flex-shrink-0 text-bg-dark">
+    <div class="container rounded-left" style="display: flex; margin-top: 10%; text-align: center; justify-content: center;">
+      <section class="col-6" style="background-color: white; border: solid 3px rgba(235, 229, 234, 0.603); color: black; border-radius: 10px 0px 0px 10px; width: 50%; height: auto; padding: 15px; display: inline-table;">
+        <h1 class="fa">Bienvenido!</h1>
+        <h3 class="text-center text-justify">En esta pagina podras encontrar los articulos escolares que nececitas, en su mejor calidad y a menor precio :D</h3>
+        <h3 class="text-center text-justify">Puedes encontrar desde cuadernos, lapices, correctores hasta herramientas que te ayudaran a aprobar todos tus ramos Y CON MAXIMA CALIFICACION =D</h3>
+        <div>
+        <a class="btn btn-success" href="{% url 'ver_prod'  %}"><i class="fa-brands fa-shopify fa-spin-pulse"></i> Ver Productos</a>
+      </div>
+      </section>
+      <br><br><br><br>
+    </div>
+</body>
+{% endblock contenido %}

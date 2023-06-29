@@ -1,0 +1,79 @@
+{% extends 'padre/base.html' %} 
+{% load static %} 
+{% block titulo %} 
+Tienda 
+{%endblock titulo %}
+ {% block contenido %}
+<body>
+  <br />
+  {% if user.is_authenticated %}
+  <div class="text-center text-bg-dark">
+    <h3>Para poder consultar tu carrito, pulsa el siguiente boton.</h3>
+    <a class="btn" href="{% url 'ver_carrito'  %}"
+      ><i class="fa-solid fa-cart-shopping btn btn-light">Carrito</i></a
+    >
+  </div>
+  {% else %}
+  <div class="text-center text-bg-dark">
+    <h3>Para poder comprar productos, por favor inicie sesion.</h3>
+  </div>
+  {% endif %}
+  <div style="justify-content: center;
+  display: flex;
+  height: calc(100vh - 192px);
+  overflow-y: scroll;">
+  <div style="padding-left: 10%;">
+    {% for prod in productos %}
+    <div
+      class="col"
+      style="display: inline-flex; align-content: center; margin: 1%"
+      id="{{ prod.id }}"
+    >
+      <div class="card mb-4 rounded-3 shadow-sm">
+        <div
+          class="card-header py-3"
+          style="background-color: rgba(255, 0, 0, 0.233)"
+        >
+          <h4 class="my-0 fw-normal" style="justify-content: start">
+            {{ prod.nombre }}
+          </h4>
+        </div>
+        <div class="card-body">
+          <img
+            src="/media/{{ prod.foto }}"
+            class="card-img-top"
+            style="width: 300px; height: 300px"
+          />
+          <section style="background-color: rgba(255, 0, 0, 0.233)">
+            <h3 class="card-title pricing-card-title">${{ prod.precio }}</h3>
+            {% if prod.cantidad <= 0 %}
+            <h5>No queda stock :c</h5>
+            {% else %}
+            <h5 class="card-title pricing-card-title">
+              Stock: {{ prod.cantidad }}
+            </h5>
+            {% endif %}
+          </section>
+          {% if user.is_authenticated %} {% if prod.cantidad > 0 %}
+          <form
+            method="POST"
+            action="{% url 'vista_carrito' prod.id %}"
+            style="display: flex; place-content: center"
+          >
+            {% csrf_token %}
+            <input
+              type="submit"
+              value="Agregar al carrito"
+              class="btn btn-dark"
+            />
+          </form>
+
+          {% endif %} {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+</body>
+{% endblock contenido %}

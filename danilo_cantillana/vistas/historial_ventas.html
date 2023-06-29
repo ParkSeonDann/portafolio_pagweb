@@ -1,0 +1,42 @@
+{% extends 'padre/base.html' %}
+{% load static %}
+
+{% block titulo %}
+Historial
+{% endblock titulo %}
+
+{% block contenido %}
+<h1 class = "text-bg-dark text-center">Historial de Ventas</h1>
+
+{% if ventas %}
+<div   class = "container">
+<table class = "table table-danger">
+<thead class = "table-light">
+            <tr>
+                <th>Fecha de Venta</th>
+                <th>Total</th>
+                <th>Productos</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for venta_info in ventas %}
+            <tr>
+                <td>{{ venta_info.venta.fecha_venta }}</td>
+                <td>${{ venta_info.venta.total_cant }}</td>
+                <td>
+                    <ul>
+                        {% for producto, cantidad, total_producto in venta_info.productos %}
+                            <li>{{ producto.nombre }} : ${{ producto.precio }} c/u (Cantidad: {{ cantidad }} => Total: ${{ total_producto }})</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<p class = "text-bg-dark text-center">No hay ventas registradas.</p>
+{% endif %}
+
+{% endblock contenido %}
