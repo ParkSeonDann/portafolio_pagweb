@@ -12,6 +12,56 @@ Inicio
 {% endblock css %}
 {% block contenido %}
 <body class="flex-shrink-0 text-bg-dark">
+    <!-- carritoinit -->
+  <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel" data-bs-theme="light">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1" aria-current="true"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="3" aria-label="Slide 0" class=""></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static 'img/shot1.jpg' %}" alt="carrusel 1" class="d-block w-100 img-fluid" style="height: 250px;">
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1>Como que no pase.</h1>
+            <p class="opacity-75">USA.</p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'img/shot2.jpg' %}" alt="carrusel 1" class="d-block w-100 img-fluid" style="height: 250px;">
+        <div class="container">
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>insertar meme chistoso.</h1>
+            <p>como decia mi abuelo...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="carousel-item">
+        <img src="{% static 'img/shot3.jpg' %}" alt="carrusel 1" class="d-block w-100 img-fluid" style="height: 250px;">
+        <div class="container">
+        <div class="container">
+          <div class="carousel-caption text-end">
+            <h1>Ve preparado al colegio</h1>
+            <p>Que no te falte nada para este año.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <!-- carritofin -->
     <div class="container rounded-left" style="display: flex; margin-top: 10%; text-align: center; justify-content: center;">
       <section class="col-6" style="background-color: white; border: solid 3px rgba(235, 229, 234, 0.603); color: black; border-radius: 10px 0px 0px 10px; width: 50%; height: auto; padding: 15px; display: inline-table;">
         <h1 class="fa">Bienvenido!</h1>
