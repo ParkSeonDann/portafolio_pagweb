@@ -1,0 +1,27 @@
+{% extends 'padre/base.html' %}
+{% load static %}
+
+{% block titulo %}
+Crear Producto
+{% endblock titulo %}
+
+{% block contenido %}
+<style>
+    input{
+        border: solid black 2px;
+    }
+
+    div {
+        margin: 1%;
+    }
+</style>
+
+<div class="container text-center bg-danger-subtle">
+    <h1 class="text-center ">Crear Producto</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+{% endblock contenido %}
