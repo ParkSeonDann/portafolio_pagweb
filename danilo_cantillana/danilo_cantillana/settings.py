@@ -69,13 +69,9 @@ WSGI_APPLICATION = 'danilo_cantillana.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'danicantillana',
-        'USER': 'dani.cantillana',
-        'PASSWORD': 'Dani.cantillana_2023',
-        'HOST': '164.152.54.1',
-        'PORT': 3306
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": "mydatabase",
     }
 }
 
