@@ -61,6 +61,9 @@ Listado de Productos
 </div>
 {% else %}
 <p class="text-center">No hay productos registrados.</p>
+<div class="d-flex justify-content-center">
+    <a href="{% url 'crear_producto' %}" class="btn btn-primary">Crear Producto</a>
+</div>
 {% endif %}
 
 {% endblock contenido %}
