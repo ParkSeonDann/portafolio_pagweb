@@ -4,6 +4,7 @@ from m_producto.models import Producto
 from .models import *
 from django.db.models import Sum
 from sweetify import success, warning, info, error
+from django.db.models import F
 
 # Create your views here.
 @login_required
@@ -96,6 +97,16 @@ def generar_comprobante(request, carrito_id):
         'carrito': carrito,
         'items': items,
         'total': total,
+    }
+
+    return render(request, 'pay.html', context)
+
+def lista_ventas(request):
+    # Obtener las ventas ordenadas por fecha y asignar números de venta basados en la fecha
+    ventas = Venta.objects.annotate(venta_number=F('id')).order_by('venta_number')
+
+    context = {
+        'ventas': ventas,
     }
 
     return render(request, 'pay.html', context)
